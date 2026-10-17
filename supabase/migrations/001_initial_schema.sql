@@ -207,7 +207,7 @@ create table payment_events (
   registration_payment_id uuid references registration_payments(id) on delete cascade,
   event_type text,
   raw_payload jsonb,
-  created_at timestamptz default now()w
+  created_at timestamptz default now()
 );
 
 -- ============================================
