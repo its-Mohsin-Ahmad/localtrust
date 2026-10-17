@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSupabase } from "@/components/providers";
@@ -21,7 +21,20 @@ export default function SignInPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [notice, setNotice] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  // Registration success / email-confirmation notices from the query string
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("registered") === "1") {
+      setNotice(
+        params.get("confirm") === "1"
+          ? "Account created. Check your email to confirm your address, then sign in."
+          : "Account created successfully — you can sign in now."
+      );
+    }
+  }, []);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -42,16 +55,41 @@ export default function SignInPage() {
       .from("profiles")
       .select("role")
       .eq("id", data.user.id)
-      .single();
+      .maybeSingle();
 
-    const role = profile?.role ?? "customer";
-    router.push(
-      role === "admin"
-        ? "/admin"
-        : role === "provider"
-          ? "/provider"
-          : "/customer"
-    );
+    let role = profile?.role;
+
+    // First login (profile not created yet — e.g. email confirmation was
+    // required at signup, so the insert happened without a session).
+    // Create it now from the metadata captured at signup.
+    if (!profile) {
+      const meta = (data.user.user_metadata ?? {}) as Record<string, string>;
+      role = meta.role === "provider" ? "provider" : "customer";
+
+      const { error: insertError } = await supabase.from("profiles").insert({
+        id: data.user.id,
+        email: data.user.email ?? email,
+        full_name: meta.full_name ?? meta.name ?? null,
+        phone: meta.phone ?? null,
+        role,
+      });
+
+      if (insertError && insertError.code !== "23505") {
+        setError("Your account exists but its profile could not be loaded.");
+        setLoading(false);
+        return;
+      }
+
+      if (role === "provider") {
+        await supabase
+          .from("provider_profiles")
+          .insert({ id: data.user.id, business_name: meta.full_name ?? null });
+      }
+    }
+
+    const target =
+      role === "admin" ? "/admin" : role === "provider" ? "/provider" : "/customer";
+    router.push(target);
     router.refresh();
   }
 
@@ -67,6 +105,14 @@ export default function SignInPage() {
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
+          {notice && (
+            <div
+              role="status"
+              className="rounded-md bg-green-50 px-4 py-3 text-sm text-green-800"
+            >
+              {notice}
+            </div>
+          )}
           {error && (
             <div
               role="alert"

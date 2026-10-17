@@ -48,7 +48,7 @@ export default function CreateAccountPage() {
     const { data, error: signUpError } = await supabase.auth.signUp({
       email,
       password,
-      options: { data: { full_name: fullName, role } },
+      options: { data: { full_name: fullName, role, phone } },
     });
 
     if (signUpError) {
@@ -57,10 +57,12 @@ export default function CreateAccountPage() {
       return;
     }
 
-    if (data.user) {
-      // Create profile row (ignore duplicate if a DB trigger already made one)
+    // With email confirmation ON (Supabase default) there is no session yet,
+    // so we cannot insert the profile row now (RLS requires auth.uid() = id).
+    // The profile is created on first sign-in instead (see sign-in page).
+    if (data.session) {
       const { error: profileError } = await supabase.from("profiles").insert({
-        id: data.user.id,
+        id: data.user!.id,
         email,
         full_name: fullName,
         phone,
@@ -77,12 +79,15 @@ export default function CreateAccountPage() {
       if (role === "provider") {
         await supabase
           .from("provider_profiles")
-          .insert({ id: data.user.id, business_name: fullName });
+          .insert({ id: data.user!.id, business_name: fullName });
       }
     }
 
-    // Send user to sign in (email verification may be required first)
-    router.push("/sign-in?registered=1");
+    // Email confirmation required? Tell the user to check their inbox.
+    const needsConfirm = Boolean(data.user && !data.session);
+    router.push(
+      needsConfirm ? "/sign-in?registered=1&confirm=1" : "/sign-in?registered=1"
+    );
   }
 
   const roles: { value: Role; label: string; description: string }[] = [
