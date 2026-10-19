@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap");
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -74,11 +76,42 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-plus-jakarta);
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .font-display {
+    font-family: var(--font-plus-jakarta);
+  }
+  .font-body {
+    font-family: var(--font-inter);
+  }
+  .hover-lift {
+    transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+  }
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px -6px rgba(6, 27, 64, 0.12);
+  }
+  .icon-navy {
+    color: #082B60;
+    transition: color 250ms ease;
+  }
+  .icon-navy:hover {
+    color: #FF6900;
+  }
+  .icon-orange {
+    color: #FF6900;
   }
 }
 

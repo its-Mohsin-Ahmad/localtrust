@@ -18,7 +18,9 @@ export function SectionHeader({
   return (
     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
       <div>
-        <h2 className="text-2xl font-bold text-[#182230] tracking-tight">{title}</h2>
+        <h2 className="text-[32px] font-bold text-[#182230] tracking-tight mb-2">
+          {title}
+        </h2>
         {description && (
           <p className="mt-1 text-[#667085] text-sm">{description}</p>
         )}
@@ -34,3 +36,7 @@ export function SectionHeader({
     </div>
   );
 }
+
+/** Alias kept for pages that import SectionHeading. */
+export const SectionHeading = SectionHeader;
+

@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { ImageAsset } from "@/components/ui/image";
-import { Mail, X, Phone, MapPin, Pin } from "lucide-react";
+import { LocalTrustLogo } from "@/components/ui/logo";
+import { X, MapPin, Instagram, Facebook, Youtube, Linkedin } from "lucide-react";
 
 const EXPLORE_LINKS = [
   { label: "Home", href: "/" },
@@ -44,11 +44,11 @@ const LEGAL_LINKS = [
 ];
 
 const SOCIAL_LINKS = [
-  { label: "Facebook", href: "#", icon: <Pin size={18} /> },
+  { label: "Facebook", href: "#", icon: <Facebook size={18} /> },
   { label: "X (Twitter)", href: "#", icon: <X size={18} /> },
-  { label: "Instagram", href: "#", icon: <Mail size={18} /> },
-  { label: "LinkedIn", href: "#", icon: <Phone size={18} /> },
-  { label: "YouTube", href: "#", icon: <Pin size={18} /> },
+  { label: "Instagram", href: "#", icon: <Instagram size={18} /> },
+  { label: "LinkedIn", href: "#", icon: <Linkedin size={18} /> },
+  { label: "YouTube", href: "#", icon: <Youtube size={18} /> },
 ];
 
 export function Footer() {
@@ -58,11 +58,7 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-10">
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <ImageAsset
-                asset="fallback"
-                className="h-7 w-7"
-                alt="LocalTrust logo"
-              />
+              <LocalTrustLogo className="h-7 w-7" />
               <span className="font-extrabold text-white tracking-tight">
                 LocalTrust
               </span>

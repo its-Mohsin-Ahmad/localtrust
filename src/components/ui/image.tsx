@@ -13,6 +13,7 @@ export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   width?: number | string;
   height?: number | string;
   fill?: boolean;
+  objectPosition?: string;
 }
 
 export function ImageAsset({
@@ -23,6 +24,8 @@ export function ImageAsset({
   priority = false,
   width,
   height,
+  objectPosition,
+  style,
   ...props
 }: ImageProps) {
   const resolved = asset ? getImage(asset) : undefined;
@@ -37,6 +40,7 @@ export function ImageAsset({
       height={Number(resolved?.height ?? height ?? 0) || undefined}
       priority={priority}
       className={cn("block", className)}
+      style={objectPosition ? { objectPosition, ...style } : style}
       {...(asset ? { sizes: "(max-width: 768px) 100vw, 50vw" } : {})}
       {...props}
     />
