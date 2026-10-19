@@ -1,8 +1,12 @@
-"use client";
-
 import Link from "next/link";
-import { CheckCircle2, Download, Printer } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import { LocalTrustLogo } from "@/components/ui/logo";
+import { PrintButtons } from "./print-buttons";
+
+// Static export (GitHub Pages) pre-renders only these receipt ids.
+export function generateStaticParams() {
+  return [{ id: "REC-2026-0001" }];
+}
 
 export default function PaymentReceiptPage({ params }: { params: { id: string } }) {
   return (
@@ -13,20 +17,7 @@ export default function PaymentReceiptPage({ params }: { params: { id: string } 
             <LocalTrustLogo className="h-8 w-8" />
             <span className="font-bold text-[#082B60]">LocalTrust</span>
           </Link>
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => window.print()}
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-card border border-[#E4E7EC] text-sm font-medium text-[#182230] hover:bg-[#F1F3F5] transition-colors"
-            >
-              <Printer className="w-4 h-4" /> Print
-            </button>
-            <button
-              onClick={() => window.print()}
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-card bg-[#FF6900] text-white text-sm font-medium hover:bg-[#e55a00] transition-colors"
-            >
-              <Download className="w-4 h-4" /> Download
-            </button>
-          </div>
+          <PrintButtons />
         </div>
       </header>
 

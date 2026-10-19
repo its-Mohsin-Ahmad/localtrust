@@ -4,6 +4,24 @@ import { ProviderCard } from "@/components/shared/provider-card";
 import { SearchBar } from "@/components/shared/search-bar";
 import { ImageAsset } from "@/components/ui/image";
 
+// Static export (GitHub Pages): pre-render every category slug.
+export function generateStaticParams() {
+  const slugs = [
+    "plumbing",
+    "electrical",
+    "cleaning",
+    "ac-repair",
+    "carpentry",
+    "painting",
+    "computer-repair",
+    "moving",
+    "gardening",
+    "tutoring",
+    "solar",
+    "pest-control",
+  ];
+  return slugs.map((slug) => ({ slug }));
+}
 
 export default function CategoryPage({ params }: { params: { slug: string } }) {
   const categoryMap: Record<string, { name: string; imageKey: string; desc: string }> = {

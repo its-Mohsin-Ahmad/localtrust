@@ -3,6 +3,23 @@ import { MapPin, Star, CheckCircle2, Clock, Phone, ArrowLeft } from "lucide-reac
 import { ImageAsset } from "@/components/ui/image";
 import { ProviderCard } from "@/components/shared/provider-card";
 
+// Static export (GitHub Pages): pre-render every linked provider slug.
+export function generateStaticParams() {
+  const slugs = [
+    "ahmed-raza",
+    "sana-builders",
+    "bilal-electricals",
+    "cleanpro-lahore",
+    "khan-plumbing",
+    "furniture-fixers",
+    "tutor-academy",
+    "green-gardens",
+    "sara-khan",
+    "usman-ali",
+  ];
+  return slugs.map((slug) => ({ slug }));
+}
+
 const PROVIDERS: Record<string, { name: string; service: string; location: string; rating: number; reviewCount: number; verified: boolean; price: string; imageKey: string; since: string; jobs: string; response: string; about: string; services: { name: string; price: string }[]; reviews: { author: string; rating: number; date: string; text: string }[] }> = {
   "ahmed-raza": {
     name: "Ahmed Raza",
