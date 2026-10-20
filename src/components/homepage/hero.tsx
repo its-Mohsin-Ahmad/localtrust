@@ -136,7 +136,7 @@ export function Hero() {
             <div className="relative w-full h-full min-h-[240px] lg:min-h-full">
               <Image
                 src={withBasePath("/images/assets/hero-plumber.jpg")}
-                alt="Plumber repairing kitchen sink with customer watching"
+                alt="Cleaning professional wiping a window"
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 50vw"
