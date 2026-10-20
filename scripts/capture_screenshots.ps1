@@ -38,6 +38,6 @@ function Take-Screenshot($name, $width, $height) {
     }
 }
 
-Take-Screenshot "homepage-desktop" 1280 2400
+Take-Screenshot "homepage-desktop" 1280 3000
 Take-Screenshot "homepage-tablet" 768 2800
 Take-Screenshot "homepage-mobile" 390 3200
