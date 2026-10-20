@@ -73,8 +73,11 @@ const config: Config = {
         card: "14px",
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "sans-serif"],
+        sans: ["var(--font-inter)", "Inter", "sans-serif"],
+        inter: ["var(--font-inter)", "Inter", "sans-serif"],
         display: ["var(--font-plus-jakarta)", "sans-serif"],
+        condensed: ["'Barlow Condensed'", "Oswald", "sans-serif"],
+        barlow: ["'Barlow Condensed'", "Oswald", "sans-serif"],
       },
       fontSize: {
         "hero-desktop": ["52px", { lineHeight: "1.05", letterSpacing: "-0.02em" }],

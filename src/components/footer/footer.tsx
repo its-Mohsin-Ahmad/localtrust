@@ -1,72 +1,89 @@
 "use client";
 
 import Link from "next/link";
+import { Facebook, Twitter, Instagram, Linkedin, Youtube } from "lucide-react";
 import { LocalTrustLogo } from "@/components/ui/logo";
-import { X, MapPin, Instagram, Facebook, Youtube, Linkedin } from "lucide-react";
 
-const EXPLORE_LINKS = [
-  { label: "Home", href: "/" },
-  { label: "Services", href: "/services" },
-  { label: "How It Works", href: "/how-it-works" },
-  { label: "Providers", href: "/providers" },
-  { label: "Locations", href: "/locations" },
-];
-
-const CUSTOMER_LINKS = [
-  { label: "Find Services", href: "/customer/find-services" },
-  { label: "My Bookings", href: "/customer/bookings" },
-  { label: "Saved Providers", href: "/customer/saved-providers" },
-  { label: "Reviews", href: "/customer/reviews" },
-  { label: "Payments", href: "/customer/payments" },
-];
-
-const PROVIDER_LINKS = [
-  { label: "Become a Provider", href: "/become-a-provider" },
-  { label: "Provider Dashboard", href: "/provider/dashboard" },
-  { label: "Services", href: "/provider/services" },
-  { label: "Earnings", href: "/provider/earnings" },
-  { label: "Verification", href: "/provider/verification" },
-];
-
-const SUPPORT_LINKS = [
-  { label: "Help Center", href: "/help" },
-  { label: "FAQ", href: "/faq" },
-  { label: "Safety", href: "/safety" },
-  { label: "Support", href: "/customer/support" },
-  { label: "Contact", href: "/contact" },
-];
-
-const LEGAL_LINKS = [
-  { label: "Terms", href: "/terms" },
-  { label: "Privacy", href: "/privacy" },
-  { label: "Registration Payment Policy", href: "/registration-payment-policy" },
-  { label: "Refund Policy", href: "/refund-policy" },
+const COLUMNS = [
+  {
+    title: "Explore Services",
+    links: [
+      { label: "Plumbing", href: "/services/plumbing" },
+      { label: "Electrical", href: "/services/electrical" },
+      { label: "Cleaning", href: "/services/cleaning" },
+      { label: "More Services", href: "/services" },
+    ],
+  },
+  {
+    title: "Find Professionals",
+    links: [
+      { label: "Top Rated", href: "/providers?filter=top-rated" },
+      { label: "Verified Providers", href: "/providers?filter=verified" },
+      { label: "New Providers", href: "/providers?filter=new" },
+      { label: "Browse All", href: "/providers" },
+    ],
+  },
+  {
+    title: "For Providers",
+    links: [
+      { label: "Join as a Provider", href: "/become-a-provider" },
+      { label: "Provider Resources", href: "/help" },
+      { label: "Verification", href: "/provider/verification" },
+      { label: "Provider Support", href: "/provider/support" },
+    ],
+  },
+  {
+    title: "Support",
+    links: [
+      { label: "Help Center", href: "/help" },
+      { label: "Safety & Verification", href: "/safety" },
+      { label: "Contact Us", href: "/contact" },
+      { label: "FAQ", href: "/faq" },
+    ],
+  },
+  {
+    title: "Legal",
+    links: [
+      { label: "Privacy Policy", href: "/privacy" },
+      { label: "Terms & Conditions", href: "/terms" },
+      { label: "Community Guidelines", href: "/safety" },
+    ],
+  },
 ];
 
 const SOCIAL_LINKS = [
-  { label: "Facebook", href: "#", icon: <Facebook size={18} /> },
-  { label: "X (Twitter)", href: "#", icon: <X size={18} /> },
-  { label: "Instagram", href: "#", icon: <Instagram size={18} /> },
-  { label: "LinkedIn", href: "#", icon: <Linkedin size={18} /> },
-  { label: "YouTube", href: "#", icon: <Youtube size={18} /> },
+  { label: "Facebook", icon: Facebook, href: "https://facebook.com" },
+  { label: "X", icon: Twitter, href: "https://twitter.com" },
+  { label: "Instagram", icon: Instagram, href: "https://instagram.com" },
+  { label: "LinkedIn", icon: Linkedin, href: "https://linkedin.com" },
+  { label: "YouTube", icon: Youtube, href: "https://youtube.com" },
 ];
 
 export function Footer() {
   return (
-    <footer className="bg-[#061B40] text-[#E4E7EC]">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 md:py-14">
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-10">
-          <div className="col-span-2 md:col-span-1">
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <LocalTrustLogo className="h-7 w-7" />
-              <span className="font-extrabold text-white tracking-tight">
-                LocalTrust
+    <footer className="w-full bg-[#041D43] text-[#A0AEC0] border-t border-[#092957]">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 lg:py-12">
+        {/* Main 6-column grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+          {/* Column 1: Brand */}
+          <div className="col-span-2 md:col-span-3 lg:col-span-1 flex flex-col justify-start">
+            <Link
+              href="/"
+              className="flex items-center gap-2 transition-opacity hover:opacity-95"
+              aria-label="TrustLocal homepage"
+            >
+              <LocalTrustLogo className="h-6 w-5" />
+              <span className="text-white font-black tracking-tight text-xl font-sans">
+                TrustLocal
               </span>
             </Link>
-            <p className="text-sm text-[#9CA3AF] leading-relaxed max-w-xs">
-              Find Trusted Professionals Near You. Trusted Services. Better Living.
+
+            <p className="mt-3 text-xs text-[#CBD5E1] leading-relaxed">
+              Find Trusted Experts. Get It Done.
             </p>
-            <div className="flex gap-3 mt-6">
+
+            {/* Social Media Circular Buttons */}
+            <div className="mt-4 flex items-center gap-2">
               {SOCIAL_LINKS.map((s) => (
                 <a
                   key={s.label}
@@ -74,111 +91,40 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="w-8 h-8 rounded-md border border-[#E4E7EC]/30 bg-[#082B60]/40 flex items-center justify-center text-[#E4E7EC] hover:text-[#FF6900] hover:border-[#FF6900]/50 transition-colors"
+                  className="flex h-7 w-7 items-center justify-center rounded-full border border-[#1C3E70] text-[#CBD5E1] hover:border-[#FF6900] hover:text-[#FF6900] hover:bg-white/5 transition-colors"
                 >
-                  {s.icon}
+                  <s.icon className="h-3.5 w-3.5" />
                 </a>
               ))}
             </div>
           </div>
 
-          <div>
-            <h3 className="text-white font-semibold mb-4">Explore Services</h3>
-            <ul className="space-y-2 text-sm text-[#9CA3AF]">
-              {EXPLORE_LINKS.map((l) => (
-                <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    className="hover:text-[#FF6900] transition-colors"
-                  >
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-white font-semibold mb-4">Customer</h3>
-            <ul className="space-y-2 text-sm text-[#9CA3AF]">
-              {CUSTOMER_LINKS.map((l) => (
-                <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    className="hover:text-[#FF6900] transition-colors"
-                  >
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-white font-semibold mb-4">Provider</h3>
-            <ul className="space-y-2 text-sm text-[#9CA3AF]">
-              {PROVIDER_LINKS.map((l) => (
-                <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    className="hover:text-[#FF6900] transition-colors"
-                  >
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-white font-semibold mb-4">Support</h3>
-            <ul className="space-y-2 text-sm text-[#9CA3AF]">
-              {SUPPORT_LINKS.map((l) => (
-                <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    className="hover:text-[#FF6900] transition-colors"
-                  >
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="lg:col-span-2">
-            <h3 className="text-white font-semibold mb-4">Legal</h3>
-            <ul className="space-y-2 text-sm text-[#9CA3AF]">
-              {LEGAL_LINKS.map((l) => (
-                <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    className="hover:text-[#FF6900] transition-colors"
-                  >
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Columns 2 to 6: Navigation */}
+          {COLUMNS.map((col) => (
+            <div key={col.title} className="flex flex-col">
+              <h3 className="font-bold text-xs uppercase tracking-wider text-white">
+                {col.title}
+              </h3>
+              <ul className="mt-3 space-y-2">
+                {col.links.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className="text-xs text-[#A0AEC0] hover:text-white transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
-        <div className="border-t border-[#E4E7EC]/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#9CA3AF]">
-          <div>
-            © {new Date().getFullYear()} LocalTrust. All rights reserved.
-          </div>
-          <div className="flex gap-6">
-            <Link href="/terms" className="hover:text-white transition-colors">
-              Terms
-            </Link>
-            <Link href="/privacy" className="hover:text-white transition-colors">
-              Privacy
-            </Link>
-          </div>
-          <div className="flex items-center gap-2 text-[#667085]">
-            <MapPin size={14} />
-            <span>Pakistan</span>
-          </div>
+        {/* Bottom strip */}
+        <div className="mt-10 pt-5 border-t border-[#0E2B56] flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-[#718096]">
+          <p>&copy; 2025 TrustLocal. All rights reserved.</p>
+          <p>Your local services marketplace.</p>
         </div>
       </div>
     </footer>
