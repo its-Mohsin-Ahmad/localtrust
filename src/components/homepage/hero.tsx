@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Search, MapPin } from "lucide-react";
+import { withBasePath } from "@/lib/base-path";
 
 const POPULAR_SEARCHES = [
   "Plumbing",
@@ -134,7 +135,7 @@ export function Hero() {
             {/* Hero Image */}
             <div className="relative w-full h-full min-h-[240px] lg:min-h-full">
               <Image
-                src="/images/assets/hero-plumber.jpg"
+                src={withBasePath("/images/assets/hero-plumber.jpg")}
                 alt="Plumber repairing kitchen sink with customer watching"
                 fill
                 priority

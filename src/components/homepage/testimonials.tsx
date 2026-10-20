@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Star, ChevronLeft, ChevronRight, CheckCircle2, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { withBasePath } from "@/lib/base-path";
 
 interface Testimonial {
   id: string;
@@ -126,7 +127,7 @@ export function Testimonials() {
                   <div className="flex items-center gap-2.5">
                     <div className="relative h-8 w-8 shrink-0 overflow-hidden rounded-full border border-[#DCE4ED] bg-slate-100">
                       <Image
-                        src={item.avatar}
+                        src={withBasePath(item.avatar)}
                         alt={item.name}
                         fill
                         sizes="32px"

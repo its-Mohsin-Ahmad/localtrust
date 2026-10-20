@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { MapPin, Search, ChevronDown } from "lucide-react";
+import { withBasePath } from "@/lib/base-path";
 
 const POPULAR_LOCATIONS = [
   "Gulberg",
@@ -125,7 +126,7 @@ export function Nearby() {
           <div className="lg:col-span-4 relative flex justify-center lg:justify-end">
             <div className="relative w-full max-w-xs h-28 sm:h-32 rounded-md overflow-hidden border border-[#DCE4ED] bg-white shadow-sm flex items-center justify-center">
               <Image
-                src="/images/reference/nearby-map.jpg"
+                src={withBasePath("/images/reference/nearby-map.jpg")}
                 alt="Map of nearby services"
                 fill
                 sizes="(max-width: 1024px) 100vw, 25vw"

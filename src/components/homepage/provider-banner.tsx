@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { withBasePath } from "@/lib/base-path";
 
 export function ProviderBanner() {
   return (
@@ -58,7 +59,7 @@ export function ProviderBanner() {
 
             <div className="relative w-full h-full min-h-[170px] lg:min-h-full">
               <Image
-                src="/images/assets/provider-technician.jpg"
+                src={withBasePath("/images/assets/provider-technician.jpg")}
                 alt="Service professional talking with customer"
                 fill
                 sizes="(max-width: 1024px) 100vw, 42vw"

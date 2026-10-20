@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Star, MapPin, Heart, CheckCircle2, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { withBasePath } from "@/lib/base-path";
 
 interface Expert {
   id: string;
@@ -181,7 +182,7 @@ export function Professionals() {
                   {/* Portrait */}
                   <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-md bg-slate-100 border border-[#E2E8F0]">
                     <Image
-                      src={expert.image}
+                      src={withBasePath(expert.image)}
                       alt={expert.name}
                       fill
                       sizes="80px"

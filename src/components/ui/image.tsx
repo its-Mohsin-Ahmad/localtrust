@@ -3,6 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import { getImage } from "@/lib/images";
+import { withBasePath } from "@/lib/base-path";
 import { cn } from "@/lib/utils";
 
 export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
@@ -29,7 +30,8 @@ export function ImageAsset({
   ...props
 }: ImageProps) {
   const resolved = asset ? getImage(asset) : undefined;
-  const finalSrc = src ?? resolved?.src ?? fallback;
+  const rawSrc = src ?? resolved?.src ?? fallback;
+  const finalSrc = rawSrc ? withBasePath(rawSrc) : rawSrc;
   const finalAlt = props.alt ?? resolved?.alt ?? "Image";
 
   return (

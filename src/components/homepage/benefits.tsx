@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ShieldCheck, MessageSquare, DollarSign, Calendar, Star, Lock } from "lucide-react";
+import { withBasePath } from "@/lib/base-path";
 
 const BENEFITS = [
   {
@@ -46,7 +47,7 @@ export function Benefits() {
           <div className="lg:col-span-5 relative min-h-[240px] lg:min-h-full">
             <div className="relative w-full h-full min-h-[240px] lg:min-h-full">
               <Image
-                src="/images/assets/benefits-technician.jpg"
+                src={withBasePath("/images/assets/benefits-technician.jpg")}
                 alt="Service technician with clipboard and van"
                 fill
                 sizes="(max-width: 1024px) 100vw, 42vw"

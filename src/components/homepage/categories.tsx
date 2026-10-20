@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { withBasePath } from "@/lib/base-path";
 
 interface CategoryItem {
   id: string;
@@ -143,7 +144,7 @@ export function Categories() {
                 {/* Image at top */}
                 <div className="relative h-20 sm:h-24 w-full overflow-hidden bg-slate-100">
                   <Image
-                    src={cat.image}
+                    src={withBasePath(cat.image)}
                     alt={cat.name}
                     fill
                     sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
