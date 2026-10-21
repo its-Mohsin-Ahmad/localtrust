@@ -44,7 +44,7 @@ const SLIDES = [
   },
   {
     key: "homeHeroBusiness",
-    eyebrow: "GROW WITH LOCALTRUST",
+    eyebrow: "GROW WITH INVOLVE",
     heading: "Turn Your Skills Into Opportunities.",
     description:
       "Build your professional profile and connect with customers in your service areas.",

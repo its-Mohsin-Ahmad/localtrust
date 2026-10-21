@@ -17,7 +17,7 @@ export default function HowItWorksPage() {
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            title="How LocalTrust Works"
+            title="How INVOLVE Works"
             description="Simple steps to book trusted local services."
           />
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">

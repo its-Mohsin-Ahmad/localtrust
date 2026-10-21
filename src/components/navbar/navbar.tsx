@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MapPin, Search, Bell, ChevronDown, Menu, X } from "lucide-react";
-import { LocalTrustLogo } from "@/components/ui/logo";
+import { InvolveLockupHorizontal } from "@/components/brand/involve-logo";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
@@ -33,12 +33,14 @@ export function Navbar() {
         <Link
           href="/"
           className="flex items-center gap-2 shrink-0 transition-opacity hover:opacity-95"
-          aria-label="TrustLocal homepage"
+          aria-label="INVOLVE homepage"
         >
-          <LocalTrustLogo className="h-6 w-5" />
-          <span className="text-white font-black tracking-tight text-xl font-sans">
-            TrustLocal
-          </span>
+          <InvolveLockupHorizontal
+            variant="light"
+            size="sm"
+            idPrefix="involve-navbar"
+            flat
+          />
         </Link>
 
         {/* Desktop Navigation Links */}
@@ -130,12 +132,12 @@ export function Navbar() {
             Sign In
           </Link>
 
-          {/* Join TrustLocal Button */}
+          {/* Join INVOLVE Button */}
           <Link
             href="/auth/create-account"
             className="inline-flex items-center justify-center h-7 px-3 text-xs font-bold text-white bg-[#FF6900] hover:bg-[#E95B00] rounded shadow-sm transition-colors uppercase tracking-tight"
           >
-            Join TrustLocal
+            Join INVOLVE
           </Link>
 
           {/* Mobile hamburger button */}
@@ -179,7 +181,7 @@ export function Navbar() {
               onClick={() => setMobileOpen(false)}
               className="flex-1 text-center py-2 text-xs font-bold text-white bg-[#FF6900] rounded"
             >
-              Join TrustLocal
+              Join INVOLVE
             </Link>
           </div>
         </div>

@@ -4,7 +4,7 @@ import { Suspense, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { CheckCircle2, CreditCard, Smartphone, Building2 } from "lucide-react";
-import { LocalTrustLogo } from "@/components/ui/logo";
+import { InvolveLockupHorizontal } from "@/components/brand/involve-logo";
 
 const METHODS = [
   { id: "card", name: "Debit / Credit Card", desc: "Visa, Mastercard — processed securely", icon: CreditCard },
@@ -31,8 +31,7 @@ function RegistrationPaymentContent() {
       <header className="border-b border-[#E4E7EC] bg-white">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 h-[76px] flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <LocalTrustLogo className="h-8 w-8" />
-            <span className="font-bold text-[#082B60]">LocalTrust</span>
+            <InvolveLockupHorizontal variant="dark" size="sm" idPrefix="involve-payment-registration" />
           </Link>
           <span className="text-xs font-semibold text-[#667085] uppercase tracking-wider">Secure Checkout</span>
         </div>

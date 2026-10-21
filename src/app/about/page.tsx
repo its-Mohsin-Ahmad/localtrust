@@ -13,9 +13,9 @@ export default function AboutPage() {
               <ImageAsset asset="aboutProfessionals" className="rounded-card shadow-lg object-cover" alt="Service professionals" objectPosition="center" />
             </div>
             <div className="lg:w-1/2 flex flex-col justify-center">
-              <span className="inline-block mb-4 px-3 py-1 rounded-full bg-[#FF6900]/10 text-[#FF6900] text-xs font-semibold tracking-wider uppercase">About LocalTrust</span>
+              <span className="inline-block mb-4 px-3 py-1 rounded-full bg-[#FF6900]/10 text-[#FF6900] text-xs font-semibold tracking-wider uppercase">About INVOLVE</span>
               <h2 className="text-[36px] font-bold text-[#182230] leading-tight mb-4">Trusted Services. Better Living.</h2>
-              <p className="text-[#667085] text-lg mb-6 leading-relaxed max-w-xl">LocalTrust connects customers with verified local service professionals across Pakistan. From plumbing and electrical to cleaning and AC repair, we make it simple to discover, compare, and book the right expert for every job.</p>
+              <p className="text-[#667085] text-lg mb-6 leading-relaxed max-w-xl">INVOLVE connects customers with verified local service professionals across Pakistan. From plumbing and electrical to cleaning and AC repair, we make it simple to discover, compare, and book the right expert for every job.</p>
               <Link href="/become-a-provider" className="inline-flex items-center gap-2 px-6 py-3 bg-[#FF6900] text-white rounded-card font-medium hover:bg-[#e55a00] transition-colors">Join as a Provider <ArrowRight className="w-4 h-4" /></Link>
             </div>
           </div>

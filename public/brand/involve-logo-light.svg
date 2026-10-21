@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 240 214" width="240" height="214" role="img" aria-labelledby="involveLogoTitle involveLogoDesc">
+  <title id="involveLogoTitle">INVOLVE</title>
+  <desc id="involveLogoDesc">The INVOLVE emblem above the INVOLVE wordmark.</desc>
+  <defs>
+    <linearGradient id="involveFigureGradient" gradientUnits="userSpaceOnUse" x1="60" y1="6" x2="60" y2="62"><stop offset="0" stop-color="#FF8A00"/><stop offset="0.45" stop-color="#FF6900"/><stop offset="1" stop-color="#D94D00"/></linearGradient>
+    <radialGradient id="involveFigureShade" gradientUnits="userSpaceOnUse" cx="60" cy="15" r="54"><stop offset="0.25" stop-color="#D94D00" stop-opacity="0"/><stop offset="1" stop-color="#D94D00" stop-opacity="0.45"/></radialGradient>
+    <g id="involveFigure"><path d="M 60 30 C 76.27 23.46 95.65 35.95 79.99 60.7 C 85.68 51.66 76.46 37.35 60 38 Z" fill="url(#involveFigureGradient)"/><ellipse cx="60" cy="17" rx="9.2" ry="11" transform="rotate(18 60 17)" fill="url(#involveFigureGradient)"/><path d="M 60 30 C 76.27 23.46 95.65 35.95 79.99 60.7 C 85.68 51.66 76.46 37.35 60 38 Z" fill="url(#involveFigureShade)"/></g>
+  </defs>
+  <g transform="translate(60 0)">
+    <use href="#involveFigure" xlink:href="#involveFigure"/><use href="#involveFigure" xlink:href="#involveFigure" transform="rotate(120 60 60)"/><use href="#involveFigure" xlink:href="#involveFigure" transform="rotate(240 60 60)"/>
+  </g>
+  <text x="120" y="188" text-anchor="middle" textLength="206" lengthAdjust="spacingAndGlyphs" font-family="Inter, 'Plus Jakarta Sans', Arial, sans-serif" font-size="54" font-weight="800" letter-spacing="1.5" fill="#061B40"><tspan>IN</tspan><tspan fill="#FF6900">V</tspan><tspan>OLVE</tspan></text>
+</svg>

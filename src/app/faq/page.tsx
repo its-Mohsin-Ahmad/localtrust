@@ -1,6 +1,6 @@
 export default function FAQPage() {
   const faqs = [
-    { q: "How do I book a service on LocalTrust?", a: "Search for a service, compare professionals, and request a booking — all in one place." },
+    { q: "How do I book a service on INVOLVE?", a: "Search for a service, compare professionals, and request a booking — all in one place." },
     { q: "Is the registration fee refundable?", a: "The one-time Rs. 200 registration fee covers account activation and is non-refundable once your account is verified." },
     { q: "Are providers verified?", a: "Providers go through a separate verification process. Payment does not equal verification — verified badges are only awarded after checks are completed." },
     { q: "How do I pay for services?", a: "Payments are handled securely through the platform. You can pay after the service is completed and verified." },

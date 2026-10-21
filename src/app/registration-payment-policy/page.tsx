@@ -1,7 +1,7 @@
 const SECTIONS = [
   {
     title: "1. Fee Overview",
-    body: "LocalTrust charges a one-time registration fee of Rs. 200 to activate a new account. The fee covers account creation, identity checks, and access to the platform. The fee is the same for customers and providers.",
+    body: "INVOLVE charges a one-time registration fee of Rs. 200 to activate a new account. The fee covers account creation, identity checks, and access to the platform. The fee is the same for customers and providers.",
   },
   {
     title: "2. Accepted Payment Methods",
@@ -21,7 +21,7 @@ const SECTIONS = [
   },
   {
     title: "6. Fraud Prevention",
-    body: "All payments are processed through encrypted channels. LocalTrust never asks for your PIN, CVV, or full card number over the phone or in chat.",
+    body: "All payments are processed through encrypted channels. INVOLVE never asks for your PIN, CVV, or full card number over the phone or in chat.",
   },
 ];
 
@@ -31,7 +31,7 @@ export default function RegistrationPaymentPolicyPage() {
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-[36px] font-bold text-[#182230] mb-6">Registration Payment Policy</h2>
-          <p className="text-[#667085] text-lg mb-10">How the one-time Rs. 200 registration fee works on LocalTrust.</p>
+          <p className="text-[#667085] text-lg mb-10">How the one-time Rs. 200 registration fee works on INVOLVE.</p>
           <div className="space-y-6">
             {SECTIONS.map((s) => (
               <div key={s.title} className="bg-white p-6 rounded-card border border-[#E4E7EC] shadow-sm">
@@ -40,7 +40,7 @@ export default function RegistrationPaymentPolicyPage() {
               </div>
             ))}
           </div>
-          <p className="text-[#667085] text-xs mt-8">Last updated: 15 Oct 2026. Questions? Contact support@localtrust.pk.</p>
+          <p className="text-[#667085] text-xs mt-8">Last updated: 15 Oct 2026. Questions? Contact support@involve.pk.</p>
         </div>
       </section>
     </div>

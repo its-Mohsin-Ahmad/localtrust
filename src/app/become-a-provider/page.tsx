@@ -14,7 +14,7 @@ export default function BecomeAProviderPage() {
             </div>
             <div className="lg:w-2/3 flex flex-col justify-center">
               <span className="inline-block mb-4 px-3 py-1 rounded-full bg-[#FF6900]/10 text-[#FF6900] text-xs font-semibold tracking-wider uppercase">Service Provider</span>
-              <h2 className="text-[36px] font-bold leading-tight mb-4">Grow Your Business with LocalTrust</h2>
+              <h2 className="text-[36px] font-bold leading-tight mb-4">Grow Your Business with INVOLVE</h2>
               <p className="text-[#E4E7EC] text-lg mb-6 leading-relaxed max-w-xl">Showcase your services, connect with customers, and manage your bookings in one place.</p>
               <ul className="space-y-3 mb-8 max-w-xl">
                 <li className="flex items-center gap-3 text-[#E4E7EC]"><span className="w-5 h-5 rounded-full bg-[#FF6900]/20 text-[#FF6900] flex items-center justify-center text-xs">+</span> Reach local customers actively searching for your services</li>

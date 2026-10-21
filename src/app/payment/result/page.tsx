@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { CheckCircle2, XCircle, Clock } from "lucide-react";
-import { LocalTrustLogo } from "@/components/ui/logo";
+import { InvolveLockupHorizontal } from "@/components/brand/involve-logo";
 
 function PaymentResultContent() {
   const searchParams = useSearchParams();
@@ -45,8 +45,7 @@ function PaymentResultContent() {
       <header className="border-b border-[#E4E7EC] bg-white">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 h-[76px] flex items-center">
           <Link href="/" className="flex items-center gap-2">
-            <LocalTrustLogo className="h-8 w-8" />
-            <span className="font-bold text-[#082B60]">LocalTrust</span>
+            <InvolveLockupHorizontal variant="dark" size="sm" idPrefix="involve-payment-result" />
           </Link>
         </div>
       </header>

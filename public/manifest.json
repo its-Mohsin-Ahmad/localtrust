@@ -1,0 +1,24 @@
+{
+  "name": "INVOLVE",
+  "short_name": "INVOLVE",
+  "description": "Discover local services, compare professionals, and request appointments with INVOLVE.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "theme_color": "#061B40",
+  "background_color": "#04132F",
+  "icons": [
+    {
+      "src": "/localtrust/brand/involve-symbol.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/localtrust/brand/involve-favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

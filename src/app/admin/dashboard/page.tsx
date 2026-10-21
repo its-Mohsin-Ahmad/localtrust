@@ -66,7 +66,7 @@ export default function AdminDashboardPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
           <h1 className="text-[26px] font-bold text-[#182230]">Platform Overview</h1>
-          <p className="text-[#667085] text-sm">Monitor LocalTrust growth, bookings, and revenue.</p>
+          <p className="text-[#667085] text-sm">Monitor INVOLVE growth, bookings, and revenue.</p>
         </div>
         <a
           href="/admin/reports"

@@ -32,7 +32,7 @@ export default function SafetyPage() {
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-[36px] font-bold text-[#182230] mb-6">Safety &amp; Trust</h2>
           <p className="text-[#667085] text-lg mb-10">
-            Learn how LocalTrust keeps you safe while using our platform.
+            Learn how INVOLVE keeps you safe while using our platform.
           </p>
           <div className="space-y-4">
             {SAFETY_ITEMS.map((item, i) => (

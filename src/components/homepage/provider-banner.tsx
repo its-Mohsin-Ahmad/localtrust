@@ -22,7 +22,7 @@ export function ProviderBanner() {
             </span>
 
             <h2 className="mt-1.5 font-barlow text-2xl sm:text-3xl lg:text-[32px] font-black uppercase tracking-tight text-white leading-tight">
-              GROW YOUR BUSINESS WITH TRUSTLOCAL
+              GROW YOUR BUSINESS WITH INVOLVE
             </h2>
 
             <p className="mt-1.5 max-w-xl text-xs sm:text-sm text-[#CBD5E1] leading-relaxed">

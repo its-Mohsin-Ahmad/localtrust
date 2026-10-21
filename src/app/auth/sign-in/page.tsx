@@ -14,7 +14,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { LocalTrustLogo } from "@/components/ui/logo";
+import { InvolveLockupHorizontal } from "@/components/brand/involve-logo";
 
 export default function SignInPage() {
   const supabase = useSupabase();
@@ -74,8 +74,7 @@ export default function SignInPage() {
     <div className="min-h-screen bg-[#F8FAFC] flex">
       <div className="hidden lg:flex lg:w-5/12 flex-col justify-center p-8 lg:p-12 bg-[#082B60] text-white">
         <div className="flex items-center gap-2 mb-12">
-          <LocalTrustLogo className="h-8 w-8" />
-          <span className="font-extrabold text-[#FF6900] tracking-tight text-[20px]">LocalTrust</span>
+          <InvolveLockupHorizontal variant="light" size="sm" idPrefix="involve-sign-in" />
         </div>
         <ImageAsset
           asset="aboutProfessionals"
@@ -92,7 +91,7 @@ export default function SignInPage() {
       <div className="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-12">
         <Card className="w-full max-w-md">
           <CardHeader className="pb-6">
-            <CardTitle className="text-2xl font-bold text-[#182230]">Sign in to LocalTrust</CardTitle>
+            <CardTitle className="text-2xl font-bold text-[#182230]">Sign in to INVOLVE</CardTitle>
             <CardDescription>Enter your email and password to access your account.</CardDescription>
           </CardHeader>
           <CardContent>

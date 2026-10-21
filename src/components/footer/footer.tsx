@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Facebook, Twitter, Instagram, Linkedin, Youtube } from "lucide-react";
-import { LocalTrustLogo } from "@/components/ui/logo";
+import { InvolveLockupHorizontal } from "@/components/brand/involve-logo";
 
 const COLUMNS = [
   {
@@ -70,12 +70,14 @@ export function Footer() {
             <Link
               href="/"
               className="flex items-center gap-2 transition-opacity hover:opacity-95"
-              aria-label="TrustLocal homepage"
+              aria-label="INVOLVE homepage"
             >
-              <LocalTrustLogo className="h-6 w-5" />
-              <span className="text-white font-black tracking-tight text-xl font-sans">
-                TrustLocal
-              </span>
+              <InvolveLockupHorizontal
+                variant="light"
+                size="md"
+                idPrefix="involve-footer"
+                flat
+              />
             </Link>
 
             <p className="mt-3 text-xs text-[#CBD5E1] leading-relaxed">
@@ -123,7 +125,7 @@ export function Footer() {
 
         {/* Bottom strip */}
         <div className="mt-10 pt-5 border-t border-[#0E2B56] flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-[#718096]">
-          <p>&copy; 2025 TrustLocal. All rights reserved.</p>
+          <p>&copy; 2025 INVOLVE. All rights reserved.</p>
           <p>Your local services marketplace.</p>
         </div>
       </div>

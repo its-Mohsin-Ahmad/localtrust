@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LocalTrustLogo } from "@/components/ui/logo";
+import { InvolveSymbol } from "@/components/brand/involve-logo";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
@@ -10,9 +10,9 @@ export default function CustomerSignupPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row gap-8">
             <div className="lg:w-2/5 flex flex-col justify-center p-8 lg:p-12 bg-[#082B60] text-white rounded-card">
-              <LocalTrustLogo className="h-8 w-8 mb-8" />
+              <InvolveSymbol className="h-8 w-8 mb-8" idPrefix="involve-signup-customer" />
               <h2 className="text-[32px] font-bold mb-4">Find Help for Your Home</h2>
-              <p className="text-[#E4E7EC] text-lg mb-6 leading-relaxed">Create your LocalTrust account to discover local services and manage your bookings.</p>
+              <p className="text-[#E4E7EC] text-lg mb-6 leading-relaxed">Create your INVOLVE account to discover local services and manage your bookings.</p>
               <ul className="space-y-4 mb-8">
                 <li className="flex items-start gap-3 text-[#E4E7EC]"><span className="w-5 h-5 rounded-full bg-[#FF6900]/20 text-[#FF6900] flex items-center justify-center text-xs shrink-0">+</span> Discover local professionals</li>
                 <li className="flex items-start gap-3 text-[#E4E7EC]"><span className="w-5 h-5 rounded-full bg-[#FF6900]/20 text-[#FF6900] flex items-center justify-center text-xs shrink-0">+</span> Compare service options</li>

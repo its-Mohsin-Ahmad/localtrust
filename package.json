@@ -2,7 +2,7 @@
   "name": "localtrust",
   "version": "1.0.0",
   "private": true,
-  "description": "LocalTrust — Complete service marketplace for Pakistan",
+  "description": "INVOLVE — Complete service marketplace for Pakistan",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

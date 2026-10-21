@@ -1,5 +1,5 @@
--- LocalTrust Initial Database Schema
--- This migration creates all core tables for the LocalTrust service marketplace.
+-- INVOLVE Initial Database Schema
+-- This migration creates all core tables for the INVOLVE service marketplace.
 
 -- Enable UUID extension
 create extension if not exists "uuid-ossp";

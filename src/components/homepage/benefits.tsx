@@ -78,7 +78,7 @@ export function Benefits() {
           <div className="lg:col-span-7 flex flex-col justify-center px-4 py-8 sm:px-6 sm:py-10 lg:py-8 lg:pl-10 z-20">
             {/* Eyebrow */}
             <span className="text-[#FF6900] text-xs font-bold tracking-[0.16em] uppercase">
-              WHY CHOOSE TRUSTLOCAL?
+              WHY CHOOSE INVOLVE?
             </span>
 
             {/* Title & Action Button Row */}

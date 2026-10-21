@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { X, Menu, Bell, User } from "lucide-react";
+import { InvolveSymbol } from "@/components/brand/involve-logo";
 import { cn } from "@/lib/utils";
 import { DashboardSidebar, SIDEBAR_LINKS_BY_VARIANT, type DashboardVariant } from "./dashboard-sidebar";
 
@@ -34,13 +35,8 @@ export function DashboardLayout({ children, variant = "customer" }: DashboardLay
           <Menu className="w-5 h-5" />
         </button>
         <div className="flex items-center gap-2">
-          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" aria-hidden="true">
-            <defs><linearGradient id="mobilePinGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#FF8A33"/><stop offset="45%" stopColor="#FF6900"/><stop offset="100%" stopColor="#E55A00"/></linearGradient></defs>
-            <path d="M24 4 C16.2 4 9.7 10.5 9.7 18.3 C9.7 26.1 24 34 24 34 S38.3 26.1 38.3 18.3 C38.3 10.5 31.8 4 24 4 Z" fill="url(#mobilePinGradient)" stroke="#D94A00" strokeWidth="1.5"/>
-            <circle cx="24" cy="15" r="5.5" fill="#061B40" stroke="#FF6900" strokeWidth="2"/>
-            <path d="M21.2 15 L22.6 16.4 L26.8 12.2" stroke="#FFFFFF" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-          <span className="font-bold text-[#082B60] tracking-tight hidden sm:inline">LocalTrust</span>
+          <InvolveSymbol className="h-6 w-6" idPrefix="involve-dash-mobile" />
+          <span className="font-bold text-[#082B60] tracking-tight hidden sm:inline">INVOLVE</span>
         </div>
         <div className="flex items-center gap-3">
           <button className="flex items-center justify-center w-8 h-8 rounded-full text-[#667085] hover:text-[#082B60] transition-colors">
@@ -58,7 +54,7 @@ export function DashboardLayout({ children, variant = "customer" }: DashboardLay
       {/* Mobile sidebar panel */}
       <aside className={cn("md:hidden fixed inset-y-0 left-0 z-30 w-64 bg-white border-r border-[#E4E7EC] transform transition-transform duration-300", mobileSidebarOpen ? "translate-x-0" : "-translate-x-full")}>
         <div className="flex items-center justify-between px-5 py-4 border-b border-[#E4E7EC]">
-          <span className="font-bold text-[#082B60] text-sm">LocalTrust</span>
+          <span className="font-bold text-[#082B60] text-sm">INVOLVE</span>
           <button onClick={() => setMobileSidebarOpen(false)} className="text-[#667085] hover:text-[#082B60]">
             <X className="w-5 h-5" />
           </button>

@@ -46,7 +46,7 @@ export function SectionPage({ title, description, icon, action, children }: Sect
             </svg>
           </div>
           <h2 className="font-bold text-[#182230] text-base mb-1">{title} will appear here</h2>
-          <p className="text-[#667085] text-sm max-w-md">{description} Start using LocalTrust and this section will fill up automatically.</p>
+          <p className="text-[#667085] text-sm max-w-md">{description} Start using INVOLVE and this section will fill up automatically.</p>
         </div>
       )}
     </div>

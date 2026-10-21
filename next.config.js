@@ -3,7 +3,7 @@ const path = require("path");
 // GitHub Pages static-export mode is enabled by the deploy workflow
 // (NEXT_STATIC_EXPORT=1). Normal dev/build behavior is unchanged.
 const isStaticExport = process.env.NEXT_STATIC_EXPORT === "1";
-// GitHub project pages are served from /<repo>, e.g. /localtrust
+// GitHub project pages are served from /<repo>, e.g. /localtrust for the INVOLVE site
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 /** @type {import("next").NextConfig} */

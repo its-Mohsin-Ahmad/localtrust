@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 120 120" width="120" height="120" role="img" aria-labelledby="involveFaviconTitle involveFaviconDesc">
+  <title id="involveFaviconTitle">INVOLVE</title>
+  <desc id="involveFaviconDesc">The INVOLVE emblem: three abstract human figures joined in a circle around a shared centre.</desc>
+  <defs>
+    <linearGradient id="involveFaviconGradient" gradientUnits="userSpaceOnUse" x1="60" y1="6" x2="60" y2="62"><stop offset="0" stop-color="#FF8A00"/><stop offset="0.5" stop-color="#FF6900"/><stop offset="1" stop-color="#D94D00"/></linearGradient>
+    <g id="involveFigure"><path d="M 60 31 C 74.98 22.91 94.79 34.73 83.87 57.49 C 86.07 47.29 74.5 34.89 60 41 Z" fill="url(#involveFaviconGradient)"/><ellipse cx="60" cy="16" rx="10.2" ry="12.2" transform="rotate(18 60 16)" fill="url(#involveFaviconGradient)"/></g>
+  </defs>
+  <use href="#involveFigure" xlink:href="#involveFigure"/><use href="#involveFigure" xlink:href="#involveFigure" transform="rotate(120 60 60)"/><use href="#involveFigure" xlink:href="#involveFigure" transform="rotate(240 60 60)"/>
+</svg>

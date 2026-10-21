@@ -1,5 +1,5 @@
 /**
- * LocalTrust centralized image manifest.
+ * INVOLVE centralized image manifest.
  * Development uses Unsplash photography. Replace with project-owned assets before production.
  */
 
@@ -198,7 +198,7 @@ export const images: Record<string, ImageAsset> = {
   },
   aboutProfessionals: {
     src: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80",
-    alt: "LocalTrust professionals serving the community",
+    alt: "INVOLVE professionals serving the community",
     width: 800,
     height: 600,
   },
@@ -222,7 +222,7 @@ export const images: Record<string, ImageAsset> = {
   },
   fallback: {
     src: "https://images.unsplash.com/photo-1460925895917-afaf655bd6c2?auto=format&fit=crop&w=600&q=80",
-    alt: "LocalTrust placeholder image",
+    alt: "INVOLVE placeholder image",
     width: 600,
     height: 400,
   },

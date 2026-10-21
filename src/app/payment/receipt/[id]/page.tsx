@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
-import { LocalTrustLogo } from "@/components/ui/logo";
+import { InvolveLockupHorizontal } from "@/components/brand/involve-logo";
 import { PrintButtons } from "./print-buttons";
 
 // Static export (GitHub Pages) pre-renders only these receipt ids.
@@ -14,8 +14,7 @@ export default function PaymentReceiptPage({ params }: { params: { id: string } 
       <header className="border-b border-[#E4E7EC] bg-white">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 h-[76px] flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <LocalTrustLogo className="h-8 w-8" />
-            <span className="font-bold text-[#082B60]">LocalTrust</span>
+            <InvolveLockupHorizontal variant="dark" size="sm" idPrefix="involve-payment-receipt" />
           </Link>
           <PrintButtons />
         </div>
@@ -43,8 +42,8 @@ export default function PaymentReceiptPage({ params }: { params: { id: string } 
             </div>
             <div className="sm:text-right">
               <p className="text-xs font-semibold text-[#667085] uppercase tracking-wider mb-2">Issued by</p>
-              <p className="font-semibold text-[#182230] text-sm">LocalTrust (Pvt) Ltd.</p>
-              <p className="text-[#667085] text-sm">support@localtrust.pk</p>
+              <p className="font-semibold text-[#182230] text-sm">INVOLVE (Pvt) Ltd.</p>
+              <p className="text-[#667085] text-sm">support@involve.pk</p>
               <p className="text-[#667085] text-sm">Date: 15 Oct 2026</p>
             </div>
           </div>

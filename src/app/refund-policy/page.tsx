@@ -31,7 +31,7 @@ export default function RefundPolicyPage() {
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-[36px] font-bold text-[#182230] mb-6">Refund Policy</h2>
-          <p className="text-[#667085] text-lg mb-10">When and how refunds are issued on LocalTrust.</p>
+          <p className="text-[#667085] text-lg mb-10">When and how refunds are issued on INVOLVE.</p>
           <div className="space-y-6">
             {SECTIONS.map((s) => (
               <div key={s.title} className="bg-white p-6 rounded-card border border-[#E4E7EC] shadow-sm">
@@ -40,7 +40,7 @@ export default function RefundPolicyPage() {
               </div>
             ))}
           </div>
-          <p className="text-[#667085] text-xs mt-8">Last updated: 15 Oct 2026. Questions? Contact support@localtrust.pk.</p>
+          <p className="text-[#667085] text-xs mt-8">Last updated: 15 Oct 2026. Questions? Contact support@involve.pk.</p>
         </div>
       </section>
     </div>

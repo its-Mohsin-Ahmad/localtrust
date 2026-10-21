@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSupabase } from "@/components/providers";
 import { Button } from "@/components/ui/button";
-import { LocalTrustLogo } from "@/components/ui/logo";
+import { InvolveLockupHorizontal } from "@/components/brand/involve-logo";
 
 import { Input } from "@/components/ui/input";
 import {
@@ -48,7 +48,7 @@ export default function CreateAccountPage() {
       if (role === "provider") await supabase.from("provider_profiles").insert({ id: data.user!.id, business_name: fullName });
     }
     const needsConfirm = Boolean(data.user && !data.session);
-    router.push(needsConfirm ? "/sign-in?registered=1&confirm=1" : "/sign-in?registered=1");
+    router.push(needsConfirm ? "/auth/sign-in?registered=1&confirm=1" : "/auth/sign-in?registered=1");
   }
 
   const roles: { value: Role; label: string; desc: string }[] = [
@@ -60,8 +60,7 @@ export default function CreateAccountPage() {
     <div className="min-h-screen bg-[#F8FAFC]">
       <header className="flex items-center justify-between px-6 py-4">
         <Link href="/" className="flex items-center gap-2">
-          <LocalTrustLogo className="h-8 w-8" />
-          <span className="font-extrabold text-[#082B60] tracking-tight text-[20px]">LocalTrust</span>
+          <InvolveLockupHorizontal variant="dark" size="sm" idPrefix="involve-create-account" />
         </Link>
         <Link href="/" className="text-sm font-medium text-[#667085] hover:text-[#082B60]">Back to home</Link>
       </header>
@@ -69,7 +68,7 @@ export default function CreateAccountPage() {
         <Card className="w-full max-w-lg">
           <CardHeader>
             <CardTitle className="text-2xl font-bold text-[#082B60]">Create your account</CardTitle>
-            <CardDescription>Join LocalTrust and connect with your local community.</CardDescription>
+            <CardDescription>Join INVOLVE and connect with your local community.</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-5">
@@ -115,7 +114,7 @@ export default function CreateAccountPage() {
               </Button>
               <p className="text-center text-sm text-[#667085]">
                 Already have an account?{" "}
-                <Link href="/sign-in" className="font-medium text-[#FF6900] hover:underline">Sign in</Link>
+                <Link href="/auth/sign-in" className="font-medium text-[#FF6900] hover:underline">Sign in</Link>
               </p>
             </form>
           </CardContent>
