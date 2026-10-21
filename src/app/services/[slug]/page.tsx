@@ -19,6 +19,9 @@ export function generateStaticParams() {
     "tutoring",
     "solar",
     "pest-control",
+    "mechanics",
+    "appliance-repair",
+    "beauty",
   ];
   return slugs.map((slug) => ({ slug }));
 }
@@ -37,6 +40,9 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
     tutoring: { name: "Tutoring", imageKey: "categoryTutoring", desc: "Find tutors for academic and skill-based learning." },
     solar: { name: "Solar Services", imageKey: "categorySolar", desc: "Find solar panel installation and maintenance experts." },
     "pest-control": { name: "Pest Control", imageKey: "categoryPestControl", desc: "Find pest control professionals for homes and businesses." },
+    mechanics: { name: "Mechanics", imageKey: "categoryMechanic", desc: "Find mechanics for vehicle repair, servicing, and diagnostics." },
+    "appliance-repair": { name: "Appliance Repair", imageKey: "categoryApplianceRepair", desc: "Find technicians for washing machines, refrigerators, and other home appliances." },
+    beauty: { name: "Beauty & Personal Care", imageKey: "categoryBeauty", desc: "Find beauty and personal care professionals for home or salon appointments." },
   };
   const cat = categoryMap[params.slug] || categoryMap.plumbing;
   const providers = [

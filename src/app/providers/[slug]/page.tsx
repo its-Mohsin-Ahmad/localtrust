@@ -16,6 +16,7 @@ export function generateStaticParams() {
     "green-gardens",
     "sara-khan",
     "usman-ali",
+    "ayesha-malik",
   ];
   return slugs.map((slug) => ({ slug }));
 }
@@ -198,7 +199,7 @@ function ProfileBody({
               <ul className="mt-5 space-y-2.5 text-xs text-[#667085]">
                 <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#22C55E] shrink-0" /> Payment held securely until job completion</li>
                 <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#22C55E] shrink-0" /> Free cancellation up to 24 hours before</li>
-                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#22C55E] shrink-0" /> Dispute support from LocalTrust team</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#22C55E] shrink-0" /> Dispute support from INVOLVE team</li>
               </ul>
             </div>
           </div>

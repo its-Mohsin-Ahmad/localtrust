@@ -1,17 +1,7 @@
 import Link from "next/link";
 import { MapPin } from "lucide-react";
 import { SectionHeading } from "@/components/ui/section-header";
-
-const LOCATIONS = [
-  { name: "Lahore", region: "Punjab", count: "1,200 providers", href: "/locations/lahore" },
-  { name: "Karachi", region: "Sindh", count: "1,500 providers", href: "/locations/karachi" },
-  { name: "Islamabad", region: "ICT", count: "600 providers", href: "/locations/islamabad" },
-  { name: "Rawalpindi", region: "Punjab", count: "400 providers", href: "/locations/rawalpindi" },
-  { name: "Faisalabad", region: "Punjab", count: "500 providers", href: "/locations/faisalabad" },
-  { name: "Multan", region: "Punjab", count: "350 providers", href: "/locations/multan" },
-  { name: "Peshawar", region: "KPK", count: "300 providers", href: "/locations/peshawar" },
-  { name: "Quetta", region: "Balochistan", count: "150 providers", href: "/locations/quetta" },
-] as const;
+import { LOCATIONS } from "@/lib/locations";
 
 export default function LocationsPage() {
   return (
