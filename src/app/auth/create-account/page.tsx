@@ -3,123 +3,149 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useSupabase } from "@/components/providers";
 import { Button } from "@/components/ui/button";
-import { InvolveLockupHorizontal } from "@/components/brand/involve-logo";
-
-import { Input } from "@/components/ui/input";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { cn } from "@/lib/utils";
+import { AuthShell } from "@/components/auth/AuthShell";
+import { PromoPanel } from "@/components/auth/PromoPanel";
+import { BenefitRow } from "@/components/auth/AuthPanels";
+import { Users, Briefcase } from "lucide-react";
 
 type Role = "customer" | "provider";
 
-export default function CreateAccountPage() {
-  const supabase = useSupabase();
-  const router = useRouter();
+const ROLES: { value: Role; label: string; desc: string; icon: React.ReactNode }[] = [
+  {
+    value: "customer",
+    label: "Customer",
+    desc: "Book trusted professionals for your home, office, or personal needs.",
+    icon: <Users className="h-5 w-5" />,
+  },
+  {
+    value: "provider",
+    label: "Service Provider",
+    desc: "Offer your services, set your schedule, and grow your income.",
+    icon: <Briefcase className="h-5 w-5" />,
+  },
+];
 
-  const [role, setRole] = useState<Role>("customer");
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
+export default function CreateAccountPage() {
+  const router = useRouter();
+  const [selected, setSelected] = useState<"customer" | "provider" | null>(null);
   const [loading, setLoading] = useState(false);
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setError(null);
-    if (password !== confirmPassword) { setError("Passwords do not match."); return; }
-    if (password.length < 8) { setError("Password must be at least 8 characters."); return; }
+  const choose = async (role: "customer" | "provider") => {
     setLoading(true);
-    const { data, error: signUpError } = await supabase.auth.signUp({
-      email, password,
-      options: { data: { full_name: fullName, role, phone } },
-    });
-    if (signUpError) { setError(signUpError.message); setLoading(false); return; }
-    if (data.session) {
-      await supabase.from("profiles").insert({ id: data.user!.id, email, full_name: fullName, phone, role });
-      if (role === "provider") await supabase.from("provider_profiles").insert({ id: data.user!.id, business_name: fullName });
-    }
-    const needsConfirm = Boolean(data.user && !data.session);
-    router.push(needsConfirm ? "/auth/sign-in?registered=1&confirm=1" : "/auth/sign-in?registered=1");
-  }
-
-  const roles: { value: Role; label: string; desc: string }[] = [
-    { value: "customer", label: "Customer", desc: "Discover professionals and manage bookings." },
-    { value: "provider", label: "Service Provider", desc: "Showcase services and manage customer requests." },
-  ];
+    setSelected(role);
+    await new Promise((r) => setTimeout(r, 400));
+    router.push(`/auth/create-account/${role}`);
+    router.refresh();
+    setLoading(false);
+  };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC]">
-      <header className="flex items-center justify-between px-6 py-4">
-        <Link href="/" className="flex items-center gap-2">
-          <InvolveLockupHorizontal variant="dark" size="sm" idPrefix="involve-create-account" />
-        </Link>
-        <Link href="/" className="text-sm font-medium text-[#667085] hover:text-[#082B60]">Back to home</Link>
-      </header>
-      <main className="flex flex-1 items-center justify-center px-4 py-8">
-        <Card className="w-full max-w-lg">
-          <CardHeader>
-            <CardTitle className="text-2xl font-bold text-[#082B60]">Create your account</CardTitle>
-            <CardDescription>Join INVOLVE and connect with your local community.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-5">
-              {error && <div role="alert" className="rounded-md bg-red-50 px-4 py-3 text-sm text-red-700">{error}</div>}
-              <fieldset>
-                <legend className="mb-2 block text-sm font-medium text-[#182230]">I am a\u2026</legend>
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                  {roles.map((r) => (
-                    <button key={r.value} type="button" onClick={() => setRole(r.value)} className={cn("rounded-card border p-4 text-left transition-all", role === r.value ? "border-[#082B60] bg-[#F0F4FF] ring-2 ring-[#082B60]/20" : "border-[#E4E7EC] bg-white hover:border-[#667085]")} aria-pressed={role === r.value}>
-                      <span className="block font-semibold text-[#182230]">{r.label}</span>
-                      <span className="mt-1 block text-xs text-[#667085]">{r.desc}</span>
-                    </button>
-                  ))}
+    <AuthShell
+      promo={
+        <PromoPanel
+          logoVariant="light"
+          headingLines={[
+            { text: "Join INVOLVE" },
+            { text: "and Get Started Today.", orange: true },
+          ]}
+          supportingText={
+            "Choose whether you are looking for services or want to offer your skills to the local community."
+          }
+          benefits={[
+            {
+              icon: <ShieldIcon />,
+              heading: "Verified Network",
+              description: "Professionals and customers you can trust.",
+            },
+            {
+              icon: <MapIcon />,
+              heading: "Across Pakistan",
+              description: "Major cities and neighbourhoods covered.",
+            },
+            {
+              icon: <StarIcon />,
+              heading: "Simple Payments",
+              description: "One-time registration fee of Rs. 200 PKR.",
+            },
+          ]}
+          photoAsset="authSignIn"
+          photoAlt="INVOLVE community of customers and professionals"
+          slogan="Better Services, Together."
+        />
+      }
+      className="bg-[#F8FAFC]"
+    >
+      <div className="flex w-full flex-col items-center justify-center pt-6">
+        <h2 className="text-[32px] font-bold text-[#182230] mb-2">Create your account</h2>
+        <p className="text-[#52688D] text-sm mb-10">
+          Join INVOLVE and connect with your local community.
+        </p>
+        <div className="grid w-full max-w-lg grid-cols-1 gap-4 md:grid-cols-2">
+          {ROLES.map((r) => {
+            const chosen = selected === r.value;
+            return (
+              <button
+                key={r.value}
+                type="button"
+                onClick={() => choose(r.value)}
+                disabled={loading}
+                className={`flex flex-col items-center gap-3 rounded-xl border p-8 text-left transition-all ${
+                  chosen
+                    ? "border-[#061B40] bg-[#EDF5FF] shadow-[0_8px_24px_rgba(6,27,64,0.10)]"
+                    : "border-[#D8E2EF] bg-white hover:border-[#082B60]/50"
+                }`}
+              >
+                <div className={`flex h-12 w-12 items-center justify-center rounded-full ${
+                  chosen ? "bg-[#FF6900] text-white" : "bg-[#F1F3F5] text-[#061B40]"
+                }`}>
+                  {r.icon}
                 </div>
-              </fieldset>
-              <div className="space-y-2">
-                <label htmlFor="fullName" className="block text-sm font-medium text-[#182230]">Full name</label>
-                <Input id="fullName" placeholder="e.g. Ali Khan" value={fullName} onChange={(e) => setFullName(e.target.value)} required autoComplete="name" />
-              </div>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <div className="space-y-2">
-                  <label htmlFor="email" className="block text-sm font-medium text-[#182230]">Email</label>
-                  <Input id="email" type="email" placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} required autoComplete="email" />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="phone" className="block text-sm font-medium text-[#182230]">Phone</label>
-                  <Input id="phone" type="tel" placeholder="03XX-XXXXXXX" value={phone} onChange={(e) => setPhone(e.target.value)} required autoComplete="tel" />
-                </div>
-              </div>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <div className="space-y-2">
-                  <label htmlFor="password" className="block text-sm font-medium text-[#182230]">Password</label>
-                  <Input id="password" type="password" placeholder="Min. 8 characters" value={password} onChange={(e) => setPassword(e.target.value)} required autoComplete="new-password" />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="confirmPassword" className="block text-sm font-medium text-[#182230]">Confirm password</label>
-                  <Input id="confirmPassword" type="password" placeholder="Repeat password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required autoComplete="new-password" />
-                </div>
-              </div>
-              {role === "provider" && <p className="rounded-md bg-[#FFF7ED] px-4 py-3 text-xs text-[#9A3412]">A one-time registration fee applies for provider accounts. You&apos;ll complete payment after creating your account.</p>}
-              <Button type="submit" className="w-full bg-[#FF6900] text-white py-3 rounded-card font-medium hover:bg-[#e55a00] transition-colors" disabled={loading}>
-                {loading ? "Creating account\u2026" : "Create account"}
-              </Button>
-              <p className="text-center text-sm text-[#667085]">
-                Already have an account?{" "}
-                <Link href="/auth/sign-in" className="font-medium text-[#FF6900] hover:underline">Sign in</Link>
-              </p>
-            </form>
-          </CardContent>
-        </Card>
-      </main>
-    </div>
+                <span className="font-semibold text-[#182230]">{r.label}</span>
+                <span className="text-xs text-[#52688D] leading-relaxed text-center">{r.desc}</span>
+                {chosen && (
+                  <div className="mt-2 h-2 w-full rounded-full bg-[#D8E2EF]">
+                    <div className="h-full w-1/2 bg-[#FF6900] rounded-full animate-pulse" />
+                  </div>
+                )}
+              </button>
+            );
+          })}
+        </div>
+        {loading && (
+          <p className="mt-6 text-xs text-[#52688D]">Preparing your registration…</p>
+        )}
+        <p className="mt-8 text-center text-sm text-[#52688D]">
+          Already have an account?{" "}
+          <Link href="/auth/sign-in" className="font-medium text-[#FF6900] hover:underline">
+            Sign in
+          </Link>
+        </p>
+      </div>
+    </AuthShell>
+  );
+}
+
+function ShieldIcon() {
+  return (
+    <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2l4 8a4 4 0 0 1-1.5 6.5L12 20l-4.5-3.5A4 4 0 0 1 8 10l4-8z" />
+    </svg>
+  );
+}
+function MapIcon() {
+  return (
+    <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" />
+      <line x1="8" x2="8" y1="3" y2="21" />
+      <line x1="16" x2="16" y1="3" y2="21" />
+    </svg>
+  );
+}
+function StarIcon() {
+  return (
+    <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+    </svg>
   );
 }

@@ -220,6 +220,24 @@ export const images: Record<string, ImageAsset> = {
     width: 600,
     height: 400,
   },
+  authSignIn: {
+    src: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1200&q=80",
+    alt: "Pakistani service professional beside a white service van",
+    width: 1200,
+    height: 800,
+  },
+  authProvider: {
+    src: "https://images.unsplash.com/photo-1504674934030-7b9d6187d564?auto=format&fit=crop&w=1200&q=80",
+    alt: "Pakistani service professional with toolbox beside a white van",
+    width: 1200,
+    height: 800,
+  },
+  authCustomer: {
+    src: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=80",
+    alt: "Pakistani woman with a smartphone outdoors in an urban setting",
+    width: 1200,
+    height: 800,
+  },
   fallback: {
     src: "https://images.unsplash.com/photo-1460925895917-afaf655bd6c2?auto=format&fit=crop&w=600&q=80",
     alt: "INVOLVE placeholder image",
