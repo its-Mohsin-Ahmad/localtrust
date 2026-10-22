@@ -11,18 +11,24 @@ import { InvolveLoader } from "@/components/brand/involve-loader";
  */
 export const APP_READY_EVENT = "involve:app-ready";
 
-/** Shortest time the loader stays on screen, so it never flashes. */
+/** Absolute floor on the loader's visible time, so it can never flash. */
 const MIN_VISIBLE_MS = 700;
+/**
+ * Total time the loader stays on screen, measured from the moment the loader
+ * appears: the staged entrance (glow + emblem + wordmark + tagline) plus the
+ * dwell carried by the emblem's continuous rotation. The exit never starts
+ * before it is over, otherwise the reveal would be cut in half.
+ */
+const REVEAL_MS = 3200;
+/**
+ * The pointer can only dismiss the loader once the emblem reveal is over
+ * (160ms delay + 640ms), so the opening is never chopped in half.
+ */
+const CLICK_DISMISS_FLOOR_MS = 1200;
 /** Hard safety net: the loader always dismisses, even if init never settles. */
-const SAFETY_TIMEOUT_MS = 7000;
+const SAFETY_TIMEOUT_MS = 5000;
 /** If webfonts hang, we stop waiting for them. */
 const FONT_TIMEOUT_MS = 2500;
-/**
- * Total length of the staged entrance animation (glow + emblem + wordmark +
- * tagline). The exit never starts before it is over, otherwise the reveal
- * would be cut in half.
- */
-const REVEAL_MS = 1250;
 /** Duration of the exit fade (must match `.involve-anim-exit`). */
 const EXIT_MS = 320;
 
@@ -39,29 +45,56 @@ export function signalAppReady(detail?: unknown) {
 
 /**
  * Timestamp (ms, same origin as `performance.now()`) at which the loader
- * became visible. Uses the navigation response time so the minimum
- * duration is measured against the real first paint, not hydration.
+ * became visible on screen.
+ *
+ * The loader is part of the statically exported HTML, so it is in the DOM
+ * before React hydrates - but the browser only paints it once the page's
+ * render-blocking assets are in. The staged entrance starts on that very
+ * first frame, so the earliest animation start time inside the loader is
+ * exactly when the user first sees it. Returns 0 while the loader has not
+ * been painted yet.
  */
-function getVisibleSince(): number {
-  if (typeof performance === "undefined") return 0;
-  const entry = performance.getEntriesByType(
-    "navigation"
-  )[0] as PerformanceNavigationTiming | undefined;
-  if (entry && typeof entry.responseEnd === "number" && entry.responseEnd > 0) {
-    return entry.responseEnd;
-  }
-  return performance.now();
+function getLoaderShownAt(): number {
+  const root = document.querySelector<HTMLElement>(".involve-loader");
+  if (!root) return 0;
+  let earliest = 0;
+  root.querySelectorAll<HTMLElement>("*").forEach((el) => {
+    el.getAnimations().forEach((animation) => {
+      const start = animation.startTime;
+      if (typeof start === "number" && start > 0 && (earliest === 0 || start < earliest)) {
+        earliest = start;
+      }
+    });
+  });
+  return earliest;
+}
+
+/**
+ * The moment the loader became visible on screen.
+ *
+ * `mountedAt` is the value captured when the component mounted; the
+ * loader's own entrance animation is preferred because it starts on the
+ * first painted frame, which is the real "the loader is on screen" moment.
+ * A value of 0 means "not known yet" and is treated as "just now".
+ */
+function resolveVisibleSince(mountedAt: number): number {
+  const shownAt = getLoaderShownAt();
+  if (shownAt > 0) return shownAt;
+  return mountedAt;
 }
 
 /**
  * Startup loader controller.
  *
- * The loader is shown once, on app startup. It hides as soon as the real
- * initialisation signals are in (static assets loaded, webfonts ready,
- * optional explicit `signalAppReady()` call), but never before
- * `MIN_VISIBLE_MS` so it cannot flash. A hard `SAFETY_TIMEOUT_MS` timeout
- * guarantees it can never stay on screen forever, and the user can always
- * dismiss it with the Escape key or by clicking the overlay.
+ * The loader is shown once, on app startup, and stays on screen for about
+ * 3.5 seconds in total: the staged entrance is never cut short and the
+ * remaining time is spent on the emblem's continuous rotation. It hides as
+ * soon as the real initialisation signals are in (static assets loaded,
+ * webfonts ready, optional explicit `signalAppReady()` call), but never
+ * before `REVEAL_MS` has elapsed since the loader appeared. A hard
+ * `SAFETY_TIMEOUT_MS` timeout guarantees it can never stay on screen
+ * forever, and the user can always dismiss it with the Escape key or by
+ * clicking the overlay.
  */
 export function BrandLoader() {
   const [phase, setPhase] = useState<Phase>("loading");
@@ -72,8 +105,13 @@ export function BrandLoader() {
   const phaseRef = useRef<Phase>("loading");
   const visibleSinceRef = useRef<number>(0);
 
+  // The loader is part of the statically exported HTML, so it is already in
+  // the DOM before React hydrates. The visible duration is therefore measured
+  // from the moment the loader is actually painted - not from the navigation
+  // timing, which is much earlier and would silently deduct the loading
+  // time from the time the user actually sees the loader.
   useEffect(() => {
-    visibleSinceRef.current = getVisibleSince();
+    visibleSinceRef.current = getLoaderShownAt() || performance.now();
   }, []);
 
   // ---- Real initialisation signals -------------------------------------
@@ -159,7 +197,10 @@ export function BrandLoader() {
     if (phaseRef.current !== "loading") return;
 
     const timers: ReturnType<typeof setTimeout>[] = [];
-    const elapsed = performance.now() - visibleSinceRef.current;
+    // Defensive: if the mount effect has not run yet, treat the loader as
+    // having appeared right now.
+    const startedAt = resolveVisibleSince(visibleSinceRef.current);
+    const elapsed = startedAt > 0 ? performance.now() - startedAt : 0;
     const wait = ready.immediate
       ? 0
       : Math.max(0, MIN_VISIBLE_MS - elapsed, REVEAL_MS - elapsed);
@@ -184,8 +225,9 @@ export function BrandLoader() {
 
   const handlePointerDown = useCallback(() => {
     if (phaseRef.current !== "loading") return;
-    const elapsed = performance.now() - visibleSinceRef.current;
-    if (elapsed < MIN_VISIBLE_MS) return;
+    const startedAt = resolveVisibleSince(visibleSinceRef.current);
+    const elapsed = startedAt > 0 ? performance.now() - startedAt : 0;
+    if (elapsed < CLICK_DISMISS_FLOOR_MS) return;
     setReady({ done: true, immediate: true });
   }, []);
 
