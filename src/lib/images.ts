@@ -196,6 +196,36 @@ export const images: Record<string, ImageAsset> = {
     width: 800,
     height: 600,
   },
+  providerAhmedRaza: {
+    src: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80",
+    alt: "Ahmed Raza - trusted mechanic",
+    width: 400,
+    height: 400,
+  },
+  providerSaraKhan: {
+    src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80",
+    alt: "Sara Khan - professional service provider",
+    width: 400,
+    height: 400,
+  },
+  providerUsmanAli: {
+    src: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80",
+    alt: "Usman Ali - skilled technician",
+    width: 400,
+    height: 400,
+  },
+  providerHinaMalik: {
+    src: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80",
+    alt: "Hina Malik - verified professional",
+    width: 400,
+    height: 400,
+  },
+  providerBilalAhmed: {
+    src: "https://images.unsplash.com/photo-1507003211169-0a1272a8e3dc?auto=format&fit=crop&w=400&q=80",
+    alt: "Bilal Ahmed - expert service provider",
+    width: 400,
+    height: 400,
+  },
   aboutProfessionals: {
     src: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80",
     alt: "INVOLVE professionals serving the community",

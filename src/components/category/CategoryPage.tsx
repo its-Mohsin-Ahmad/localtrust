@@ -22,11 +22,11 @@ export function CategoryPage({ slug: slugProp }: CategoryPageProps) {
   const [activeService, setActiveService] = React.useState(0);
   const LOCATIONS = ["Lahore","Karachi","Islamabad","Rawalpindi","Peshawar"];
   const providers = [
-    { name: "Ahmed Raza", service: cat.name, location: location + ", Pakistan", rating: 4.8, reviewCount: 124, verified: true, price: cat.startingPrice, imageKey: cat.heroImageKey, href: "/providers/ahmed-raza" },
-    { name: "Sara Khan", service: cat.name, location: location + ", Pakistan", rating: 4.6, reviewCount: 98, verified: true, price: cat.startingPrice, imageKey: cat.heroImageKey, href: "/providers/sara-khan" },
-    { name: "Usman Ali", service: cat.name, location: location + ", Pakistan", rating: 4.7, reviewCount: 87, verified: true, price: cat.startingPrice, imageKey: cat.heroImageKey, href: "/providers/usman-ali" },
-    { name: "Hina Malik", service: cat.name, location: location + ", Pakistan", rating: 4.5, reviewCount: 64, verified: false, price: cat.startingPrice, imageKey: cat.heroImageKey, href: "/providers/hina-malik" },
-    { name: "Bilal Ahmed", service: cat.name, location: location + ", Pakistan", rating: 4.9, reviewCount: 156, verified: true, price: cat.startingPrice, imageKey: cat.heroImageKey, href: "/providers/bilal-ahmed" },
+    { name: "Ahmed Raza", service: cat.name, specialty: "General Servicing", location: location + ", Pakistan", distance: "6.4 km (12 min away)", rating: 4.8, reviewCount: 124, verified: true, price: cat.startingPrice, avatarKey: "providerAhmedRaza", imageKey: cat.heroImageKey, href: "/providers/ahmed-raza" },
+    { name: "Sara Khan", service: cat.name, specialty: "Engine Diagnostics", location: location + ", Pakistan", distance: "7.1 km (14 min away)", rating: 4.6, reviewCount: 98, verified: true, price: cat.startingPrice, avatarKey: "providerSaraKhan", imageKey: cat.heroImageKey, href: "/providers/sara-khan" },
+    { name: "Usman Ali", service: cat.name, specialty: "Brake Repair", location: location + ", Pakistan", distance: "5.9 km (11 min away)", rating: 4.7, reviewCount: 87, verified: true, price: cat.startingPrice, avatarKey: "providerUsmanAli", imageKey: cat.heroImageKey, href: "/providers/usman-ali" },
+    { name: "Hina Malik", service: cat.name, specialty: "Oil & Filter Change", location: location + ", Pakistan", distance: "8.2 km (16 min away)", rating: 4.5, reviewCount: 64, verified: false, price: cat.startingPrice, avatarKey: "providerHinaMalik", imageKey: cat.heroImageKey, href: "/providers/hina-malik" },
+    { name: "Bilal Ahmed", service: cat.name, specialty: "Battery Replacement", location: location + ", Pakistan", distance: "4.8 km (9 min away)", rating: 4.9, reviewCount: 156, verified: true, price: cat.startingPrice, avatarKey: "providerBilalAhmed", imageKey: cat.heroImageKey, href: "/providers/bilal-ahmed" },
   ];
   const visibleCards = 4;
   const maxSlide = Math.max(0, cat.carousel.length - visibleCards);
@@ -165,24 +165,46 @@ export function CategoryPage({ slug: slugProp }: CategoryPageProps) {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {providers.map((p) => (
-              <div key={p.name} className="bg-white border border-[#DCE5EF] rounded-xl p-3 shadow-sm hover:shadow-md transition-shadow">
-                <ImageAsset asset={p.imageKey} alt={p.name} className="w-full h-32 object-cover rounded-lg" />
-                <div className="mt-2">
-                  <div className="flex items-center justify-between">
+              <div key={p.name} className="bg-white border border-[#DCE5EF] rounded-xl shadow-sm hover:shadow-md transition-shadow flex flex-col">
+                <div className="relative h-36 rounded-t-xl overflow-hidden bg-[#F3F7FB]">
+                  <ImageAsset asset={p.avatarKey ?? p.imageKey} alt={p.name} className="w-full h-full object-cover" />
+                  {p.verified && (
+                    <div className="absolute bottom-2 right-2 bg-white rounded-full px-2 py-0.5 shadow-sm flex items-center gap-1">
+                      <CheckCircle2 className="h-3 w-3 text-[#16A36A]" />
+                      <span className="text-[10px] font-bold text-[#16A36A]">Verified</span>
+                    </div>
+                  )}
+                </div>
+                <div className="p-3">
+                  <div className="flex items-center justify-between mb-1">
                     <h3 className="font-semibold text-sm text-[#092B59] truncate">{p.name}</h3>
-                    {p.verified && <CheckCircle2 className="h-4 w-4 text-[#16A36A] shrink-0" />}
+                    {p.verified && (
+                      <span className="h-5 px-2 rounded bg-[#10B981]/10 text-[#10B981] text-[10px] font-bold">Verified</span>
+                    )}
                   </div>
-                  <p className="text-xs text-[#647B99]">{p.service}</p>
-                  <div className="flex items-center gap-1 mt-1">
-                    <Star className="h-3.5 w-3.5 text-[#FF6900] fill-[#FF6900]" />
-                    <span className="text-xs font-medium text-[#092B59]">{p.rating.toFixed(1)}</span>
-                    <span className="text-xs text-[#647B99]">({p.reviewCount})</span>
+                  <p className="text-xs text-[#647B99] mb-2">{p.specialty}</p>
+                  <div className="flex items-center gap-1 mb-2">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <Star
+                        key={star}
+                        className={cn(
+                          "h-3 w-3",
+                          star <= Math.floor(p.rating) ? "text-[#FF6900] fill-[#FF6900]" : "text-[#DCE5EF]"
+                        )}
+                      />
+                    ))}
+                    <span className="text-xs font-medium text-[#092B59] ml-1">{p.rating.toFixed(1)}</span>
+                    <span className="text-xs text-[#647B99] ml-1">({p.reviewCount})</span>
                   </div>
-                  <p className="text-xs text-[#647B99] mt-1">{p.location}</p>
-                  <p className="text-xs font-medium text-[#092B59] mt-1">{p.price}</p>
-                  <div className="flex gap-1.5 mt-2">
-                    <Link href={p.href} className="flex-1 text-center text-xs py-1.5 rounded-md border border-[#DCE5EF] text-[#092B59] hover:bg-[#F3F7FB]">View Profile</Link>
-                    <Link href={"/book?provider=" + encodeURIComponent(p.name) + "&service=" + encodeURIComponent(cat.name)} className="flex-1 text-center text-xs py-1.5 rounded-md bg-[#FF6900] text-white hover:bg-[#E85B00]">Book Now</Link>
+                  <div className="flex items-center gap-1.5 text-xs text-[#647B99] mb-2">
+                    <MapPin className="h-3 w-3" />
+                    <span>{p.location}</span>
+                    <span className="text-[#092B59] font-medium">♦ {p.distance}</span>
+                  </div>
+                  <p className="text-xs font-medium text-[#092B59] mb-3">{p.price}</p>
+                  <div className="flex gap-1.5">
+                    <Link href={p.href} className="flex-1 text-center text-[10px] py-1.5 rounded-md border border-[#DCE5EF] text-[#092B59] hover:bg-[#F3F7FB] transition-colors">View Profile</Link>
+                    <Link href={"/book?provider=" + encodeURIComponent(p.name) + "&service=" + encodeURIComponent(cat.name)} className="flex-1 text-center text-[10px] py-1.5 rounded-md bg-[#FF6900] text-white text-xs hover:bg-[#E85B00] transition-colors">Book Now</Link>
                   </div>
                 </div>
               </div>
