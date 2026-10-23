@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 export {};
 import { Providers } from "@/components/providers";
 import { BrandLoader } from "@/components/brand/brand-loader";
 import { BRAND, withBrandPath } from "@/lib/brand";
+import SmoothScrollProvider from "@/components/animations/SmoothScrollProvider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-plus-jakarta",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -51,10 +57,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} ${plusJakartaSans.variable} font-sans antialiased`}>
         <Providers>
-          <BrandLoader />
-          {children}
+          <SmoothScrollProvider>
+            <BrandLoader />
+            {children}
+          </SmoothScrollProvider>
         </Providers>
       </body>
     </html>
