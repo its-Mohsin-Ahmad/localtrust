@@ -67,8 +67,6 @@ const config: Config = {
         "primary-text": "#092B59",
         "secondary-text": "#647B99",
         "light-grey": "#F1F3F5",
-        borders: "#DCE5EF",
-        border: "#DCE5EF",
         success: "#16A36A",
         warning: "#F59E0B",
         error: "#DC2626",
